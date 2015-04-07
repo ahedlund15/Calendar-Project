@@ -1,4 +1,4 @@
-public class theDay
+public class MyDay
 {
   private String myDate;
   public theDay(String date)   //the date in the form dd/mm/yyyy

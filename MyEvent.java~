@@ -1,4 +1,4 @@
-public class theEvent
+public class MyEvent
 {
   public theEvent()
   {
