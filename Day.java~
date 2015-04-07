@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Day 
+{
+  private int mynumb; //the number of the day like the 1st or 2nd or whatever
+  private int myyear; // the year of the day
+  private int mymonth; //the month of the day
+  ArrayList<Event> myevents = new ArrayList<Event>();
+
+  public Day(int numb, int year, int month)
+  {
+    mynumb = numb;
+    myyear = year;
+    mymonth = month;
+  }
+  
+  Day dayOne = new Day(getDay(), getYear(), getMonth());
+  
+}

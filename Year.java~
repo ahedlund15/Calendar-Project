@@ -1,0 +1,12 @@
+public class Year
+{
+  private int mynumb;
+  public Year(int yearnumb)
+  {
+    mynumb = yearnumb;
+  }
+  //every year has 12 months
+  
+  Month[] monthsoftheyear = new Month[12];
+  
+}
