@@ -50,4 +50,36 @@ public class MyDay
     else leap = false;
     return leap;
   }
+  
+  public int monthDays()
+  {
+    int numbDays = 0;
+    int month = Integer.parseInt(myDate.substring(3,5));
+    if ((month == 1) ||
+        (month == 3) ||
+        (month == 5) ||
+        (month == 7) ||
+        (month == 8) ||
+        (month == 10) ||
+        (month == 12))
+    {
+      numbDays = 31;
+    }
+    else if ((month == 4) ||
+             (month == 6) ||
+             (month == 9) ||
+             (month == 11))
+    {
+      numbDays = 30;
+    }
+    else if (month == 2)
+    {
+      if (leapYear() == true)
+      {
+        numbDays = 29;
+      }
+      else numbDays = 28;
+    }
+    return numbDays;
+  }
 }
