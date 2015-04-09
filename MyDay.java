@@ -1,4 +1,6 @@
 public class MyDay
+  //notes:
+  //create an array list of arrays each array is a year with 365 or 366 elements each of which is a day
 {
   private String myDate;
   public MyDay(String date)   //the date in the form dd/mm/yyyy
@@ -13,22 +15,24 @@ public class MyDay
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
       "Saturday", "Sunday"
     };
-    int startYear = 2001; //because 2001 starts on monday jan 1
-    int yearDays = 0;
-    int tDay = 0;
-    int day = Integer.parseInt(myDate.substring(0,2));
-    int month = Integer.parseInt(myDate.substring(3,5));
+    //int yearDays = 0;
+    //int tDay = 0;
+    /*int day = Integer.parseInt(myDate.substring(3,5));
+    int month = Integer.parseInt(myDate.substring(0,2));
     int year = Integer.parseInt(myDate.substring(6,10));
-    
-    if (leapYear() == true)
+    */
+    /*if (leapYear() == true)
     {
       yearDays = 366;
     }
-    else yearDays = 365;
+    else yearDays = 365;*/
     
-    tDay = ((year - startYear) * yearDays) + monthDays() + day;
+    //tDay = ((year - startYear) * yearDays) + monthDays() + day;
     
-    return weekNames[0];    //0 just a placeholder rn
+    int name = (tDay() % 7) - 1;
+    if (name == -1) name = 6;
+    
+    return weekNames[name];    //0 just a placeholder rn
   }
   
   public boolean leapYear() //determines whether a year is a leap year
@@ -51,11 +55,49 @@ public class MyDay
     return leap;
   }
   
+  public int tDay()
+  {
+    int day = Integer.parseInt(myDate.substring(3,5));
+    int month = Integer.parseInt(myDate.substring(0,2));
+    int year = Integer.parseInt(myDate.substring(6,10));
+    int startYear = 2001; //because 2001 starts on monday jan 1
+    int yearDays = 365;
+    
+    int theDay = ((year - startYear) * yearDays) + monthDays() + day; //screwed up if leap year
+    
+    return theDay;
+  }
+  
+  public int saveLeapYear()
+  {
+    int save = 0;
+    int year = Integer.parseInt(myDate.substring(6,10));
+    for (int i = 2001; i < year; i++)
+    {
+      boolean leap = false;
+      if (i % 4 == 0)  //leap years are divisible by 4
+      {
+        if (i % 100 == 0) //but if it's also divisible by 100 it's not
+        {
+          if (i % 400 == 0) //unless it's also divisible by 400
+          {
+            leap = true;
+          }
+          else leap = false;
+        }
+        else leap = true;
+      }
+      else leap = false;
+      if (leap == true) save++;
+    }
+    return save;
+  }
+  
   public int monthDays()
   {
     int fullMonth = 0;
     int totalDays = 0;
-    int month = Integer.parseInt(myDate.substring(3,5));
+    int month = Integer.parseInt(myDate.substring(0,2));
     int preMonths = month - 1;
     if (preMonths == 0) month = 0;
     else if (preMonths > 0)
@@ -73,36 +115,8 @@ public class MyDay
       if (preMonths == 11) totalDays = 334;
     }
     if (leapYear() == true) totalDays++;
-    return totalDays;
-    /*int numbDays = 0;
-    int myMonthDays = 0;
-    int month = Integer.parseInt(myDate.substring(3,5));
-    if ((month == 1) ||
-        (month == 3) ||
-        (month == 5) ||
-        (month == 7) ||
-        (month == 8) ||
-        (month == 10) ||
-        (month == 12))
-    {
-      numbDays = 31;
-    }
-    else if ((month == 4) ||
-             (month == 6) ||
-             (month == 9) ||
-             (month == 11))
-    {
-      numbDays = 30;
-    }
-    else if (month == 2)
-    {
-      if (leapYear() == true)
-      {
-        numbDays = 29;
-      }
-      else numbDays = 28;
-    }
-    myMonthDays = 
-    return myMonthDays;*/
+    return totalDays + saveLeapYear();
   }
+  
+  
 }
