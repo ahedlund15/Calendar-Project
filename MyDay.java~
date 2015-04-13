@@ -30,6 +30,7 @@ public class MyDay
     //tDay = ((year - startYear) * yearDays) + monthDays() + day;
     
     int name = (tDay() % 7) - 1;
+    if (name == -1) name = 6;
     
     return weekNames[name];    //0 just a placeholder rn
   }
@@ -59,15 +60,12 @@ public class MyDay
     int day = Integer.parseInt(myDate.substring(3,5));
     int month = Integer.parseInt(myDate.substring(0,2));
     int year = Integer.parseInt(myDate.substring(6,10));
-    int startYear = 2001; //because 2001 starts on monday jan 1
-    int yearDays = 0;
-    if (leapYear() == true)
-    {
-      yearDays = 366;
-    }
-    else yearDays = 365;
+    int startYear = 2001; //because 1806 starts on monday jan 1
+    int yearDays = 365;
     
     int theDay = ((year - startYear) * yearDays) + monthDays() + day;
+    
+    
     
     return theDay;
   }
@@ -120,36 +118,6 @@ public class MyDay
     }
     if (leapYear() == true) totalDays++;
     return totalDays + saveLeapYear();
-    /*int numbDays = 0;
-    int myMonthDays = 0;
-    int month = Integer.parseInt(myDate.substring(3,5));
-    if ((month == 1) ||
-        (month == 3) ||
-        (month == 5) ||
-        (month == 7) ||
-        (month == 8) ||
-        (month == 10) ||
-        (month == 12))
-    {
-      numbDays = 31;
-    }
-    else if ((month == 4) ||
-             (month == 6) ||
-             (month == 9) ||
-             (month == 11))
-    {
-      numbDays = 30;
-    }
-    else if (month == 2)
-    {
-      if (leapYear() == true)
-      {
-        numbDays = 29;
-      }
-      else numbDays = 28;
-    }
-    myMonthDays = 
-    return myMonthDays;*/
   }
   
   

@@ -1,6 +1,6 @@
 public class MyEvent
 {
-  public theEvent()
+  public MyEvent()
   {
     
   }

@@ -1,11 +1,16 @@
+import java.util.*;
+
 public class MyDay
   //notes:
   //create an array list of arrays each array is a year with 365 or 366 elements each of which is a day
 {
   private String myDate;
-  public MyDay(String date)   //the date in the form dd/mm/yyyy
+  private ArrayList<MyEvent> myEvents;
+  
+  public MyDay(String date, ArrayList<MyEvent> events)   //the date in the form dd/mm/yyyy
   {
     myDate = date;           //will use parseint to get date as ints
+    myEvents = events;
   }
   
   public String getName()    //use this to get day of the week
@@ -60,10 +65,12 @@ public class MyDay
     int day = Integer.parseInt(myDate.substring(3,5));
     int month = Integer.parseInt(myDate.substring(0,2));
     int year = Integer.parseInt(myDate.substring(6,10));
-    int startYear = 2001; //because 2001 starts on monday jan 1
+    int startYear = 2001; //because 1806 starts on monday jan 1
     int yearDays = 365;
     
-    int theDay = ((year - startYear) * yearDays) + monthDays() + day; //screwed up if leap year
+    int theDay = ((year - startYear) * yearDays) + monthDays() + day;
+    
+    
     
     return theDay;
   }
