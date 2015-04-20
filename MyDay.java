@@ -35,10 +35,10 @@ public class MyDay
     
     //tDay = ((year - startYear) * yearDays) + monthDays() + day;
     
-    int name = (tDay() % 7) - 1;
-    if (name == -1) name = 6;
+    int name = (tDay() % 7) - 1;  //7 days per week
+    if (name == -1) name = 6; //because array starts at 0
     
-    return weekNames[name];    //0 just a placeholder rn
+    return weekNames[name];    
   }
   
   public boolean leapYear() //determines whether a year is a leap year
@@ -66,7 +66,7 @@ public class MyDay
     int day = Integer.parseInt(myDate.substring(3,5));
     int month = Integer.parseInt(myDate.substring(0,2));
     int year = Integer.parseInt(myDate.substring(6,10));
-    int startYear = 2001; //because 1806 starts on monday jan 1
+    int startYear = 2001; //because 2001 starts on monday jan 1
     int yearDays = 365;
     
     int theDay = ((year - startYear) * yearDays) + monthDays() + day;
@@ -76,11 +76,11 @@ public class MyDay
     return theDay;
   }
   
-  public int saveLeapYear()
+  public int saveLeapYear() //figures out how many years before had leap years and gets the number so it can be added to the total days from 1/1/2001 onward
   {
     int save = 0;
     int year = Integer.parseInt(myDate.substring(6,10));
-    for (int i = 2001; i < year; i++)
+    for (int i = 2001; i < year; i++) //gets the # of leap years from 2001 to the specified year
     {
       boolean leap = false;
       if (i % 4 == 0)  //leap years are divisible by 4
@@ -106,14 +106,14 @@ public class MyDay
     int fullMonth = 0;
     int totalDays = 0;
     int month = Integer.parseInt(myDate.substring(0,2));
-    int preMonths = month - 1;
+    int preMonths = month - 1;  //number of months before this specific month
     if (preMonths == 0) month = 0;
     else if (preMonths > 0)
     {
-      if (preMonths == 1) totalDays = 31;
-      if (preMonths == 2) totalDays = 59;
-      if (preMonths == 3) totalDays = 90;
-      if (preMonths == 4) totalDays = 120;
+      if (preMonths == 1) totalDays = 31; //january
+      if (preMonths == 2) totalDays = 59; //february + january
+      if (preMonths == 3) totalDays = 90; //j + f + m
+      if (preMonths == 4) totalDays = 120; //etc.
       if (preMonths == 5) totalDays = 151;
       if (preMonths == 6) totalDays = 181;
       if (preMonths == 7) totalDays = 212;
@@ -122,8 +122,18 @@ public class MyDay
       if (preMonths == 10) totalDays = 304;
       if (preMonths == 11) totalDays = 334;
     }
-    if (leapYear() == true) totalDays++;
-    return totalDays + saveLeapYear();
+    if (leapYear() == true) totalDays++; //because leap years have 366 vs. normal 365
+    return totalDays + saveLeapYear();  //adds in the additional leap years from previous years
+  }
+  
+  public String getDate()
+  {
+    return myDate;
+  }
+  
+  public ArrayList<MyEvent> getEventList()
+  {
+    return myEvents;
   }
   
   /*public void addDay()
