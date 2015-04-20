@@ -3,22 +3,20 @@ import java.util.*;
 public class InputCalendar
 {
   private String myDate;
-  private ArrayList<MyDay> daysAndDays;
-  private MyDay thisDay;
-  public InputCalendar(String date, ArrayList<MyDay> tsf, MyDay today)
+  private ArrayList<MyDay> daysAndDays;  //an arrayList of inputted days
+  //private MyDay thisDay;
+  public InputCalendar(String date)
   {
     myDate = date;
-    daysAndDays = tsf;
-    thisDay = today;
   }
   
-  public void addDay()
+  public void addDay()   //add a day to the arrayList daysAndDays
   {
     int day = Integer.parseInt(myDate.substring(3,5));
     int month = Integer.parseInt(myDate.substring(0,2));
     int year = Integer.parseInt(myDate.substring(6,10));
-    daysAndDays.add(thisDay);
-  }
+    //daysAndDays.add(thisDay);
+  } 
   
   
   

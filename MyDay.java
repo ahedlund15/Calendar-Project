@@ -5,6 +5,7 @@ public class MyDay
   //create an array list of arrays each array is a year with 365 or 366 elements each of which is a day
 {
   private String myDate;
+  private ArrayList<MyDay> daysAndDays;
   private ArrayList<MyEvent> myEvents;
   
   public MyDay(String date, ArrayList<MyEvent> events)   //the date in the form dd/mm/yyyy
@@ -125,5 +126,9 @@ public class MyDay
     return totalDays + saveLeapYear();
   }
   
+  /*public void addDay()
+  {
+    daysAndDays.add(this.MyDay);
+  }*/
   
 }

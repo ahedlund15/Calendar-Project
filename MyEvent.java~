@@ -1,7 +1,26 @@
+import java.util.*;
+
 public class MyEvent
 {
-  public MyEvent()
+  private String myName;
+  private String myStart;
+  private String myEnd;
+  private String myDetails;
+  
+  public MyEvent(String eventName, String startEvent, String endEvent, String details)
   {
-    
+    myName = eventName;
+    myStart = startEvent;
+    myEnd = endEvent;
+    myDetails = details;
+  }
+  
+  public double makeTime()
+  {
+    double theTime = 0;
+    double stime = Integer.parseInt(myStart.substring(0,2));
+    double etime = Integer.parseInt(myStart.substring(3,5));
+    theTime = stime + (etime/60);
+    return theTime;
   }
 }
